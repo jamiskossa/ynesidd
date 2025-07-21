@@ -55,12 +55,55 @@
     .smooth-scroll {
       scroll-behavior: smooth;
     }
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero-buttons a {
+        width: 100%;
+        text-align: center;
+      }
+      .profile-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .video-container {
+        display: none;
+      }
+    }
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-900 smooth-scroll" x-data="{ 
-  mobileMenu: false, 
-  currentSlide: 0,
+<body class="bg-gray-50 text-gray-900 smooth-scroll" x-data="{
+   mobileMenu: false,
+   currentSlide: 0,
   slides: [
     {
       image: 'images/logo.png',
@@ -124,8 +167,8 @@
     </nav>
   </header>
 
-    <!-- Hero Section avec Slideshow -->
-  <section id="accueil" class="pt-20 min-h-screen relative overflow-hidden" style="background-image: url('/images/hero-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <!-- Hero Section avec Slideshow -->
+  <section id="accueil" class="pt-20 min-h-screen relative overflow-hidden" style="background-image: url('/images/hero-bg.jpg'); background-size: cover; background-position: center;">
     <div class="swiper hero-swiper h-screen">
       <div class="swiper-wrapper">
         <template x-for="(slide, index) in slides" :key="index">
@@ -134,13 +177,13 @@
             <img src="hero1.png" :alt="slide.title" class="w-full h-full object-cover">
             <div class="absolute inset-0 z-20 flex items-center justify-center text-center text-white">
               <div class="max-w-4xl px-4">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6" x-text="slide.title"></h1>
-                <p class="text-xl md:text-2xl mb-8" x-text="slide.subtitle"></p>
-                <div class="space-x-4">
-                  <a href="#about" class="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-full transition-colors">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6" x-text="slide.title"></h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8" x-text="slide.subtitle"></p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center hero-buttons">
+                  <a href="#about" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-full transition-colors">
                     Découvrir notre mission
                   </a>
-                  <a href="#don" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full transition-colors">
+                  <a href="#don" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 rounded-full transition-colors">
                     Nous soutenir
                   </a>
                 </div>
@@ -155,61 +198,60 @@
     </div>
 
     <!-- Video YouTube intégrée -->
-    <div class="absolute bottom-10 right-10 z-30 hidden lg:block">
+    <div class="absolute bottom-10 right-10 z-30 hidden lg:block video-container">
       <div class="bg-white/90 p-4 rounded-lg shadow-lg">
         <iframe 
           class="w-80 h-48 rounded-lg" 
-          src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
           allowfullscreen>
         </iframe>
       </div>
     </div>
   </section>
 
-
   <!-- Section À propos avec Profil Maria -->
-  <section id="about" class="py-20 bg-white">
+  <section id="about" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-primary mb-6">À propos de YNESIDD</h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">À propos de YNESIDD</h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Une association dédiée à l'accompagnement, la formation et l'insertion des personnes en situation de handicap
           </p>
         </div>
 
         <!-- Profil de Maria -->
-        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 mb-12">
-          <div class="flex flex-col lg:flex-row items-center gap-8">
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 md:p-8 mb-10 md:mb-12">
+          <div class="flex flex-col lg:flex-row items-center gap-6 md:gap-8 profile-section">
             <div class="flex-shrink-0">
-              <img src="logo.png" alt="Maria Ramatoulaye Comnos" 
-                   class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-lg">
+              <img src="logo.png" alt="Maria Ramatoulaye Comnos"
+                   class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-lg">
             </div>
             <div class="flex-1 text-center lg:text-left">
-              <h3 class="text-3xl font-bold text-primary mb-2">Maria Ramatoulaye Comnos</h3>
-              <p class="text-xl text-secondary mb-4">Présidente Directrice Générale</p>
-              <p class="text-gray-700 mb-6 leading-relaxed">
+              <h3 class="text-2xl md:text-3xl font-bold text-primary mb-2">Maria Ramatoulaye Comnos</h3>
+              <p class="text-lg md:text-xl text-secondary mb-3 md:mb-4">Présidente Directrice Générale</p>
+              <p class="text-gray-700 mb-4 md:mb-6 leading-relaxed">
                 Fondatrice de YNESIDD, Maria Ramatoulaye Comnos a dédié sa vie à l'accompagnement des personnes en situation de handicap. 
-                Avec une vision humaniste et inclusive, elle œuvre pour créer des ponts entre la France et la Guinée afin d'offrir 
+                Avec une vision humaniste et inclusive, elle œuvre pour créer des ponts entre la France et la Guinée afin d'offrir
                 espoir et dignité aux plus vulnérables.
               </p>
               
               <!-- Réseaux sociaux -->
-              <div class="flex justify-center lg:justify-start space-x-4">
-                <a href="https://facebook.com/maria.comnos" target="_blank" 
-                   class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
+              <div class="flex justify-center lg:justify-start space-x-3 md:space-x-4">
+                <a href="https://facebook.com/maria.comnos" target="_blank"
+                   class="bg-blue-600 text-white p-2 md:p-3 rounded-full hover:bg-blue-700 transition-colors">
                   <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="https://youtube.com/@mariacomnos" target="_blank"
-                   class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors">
+                  class="bg-red-600 text-white p-2 md:p-3 rounded-full hover:bg-red-700 transition-colors">
                   <i class="fab fa-youtube"></i>
                 </a>
                 <a href="https://tiktok.com/@mariacomnos" target="_blank"
-                   class="bg-black text-white p-3 rounded-full hover:bg-gray-800 transition-colors">
+                  class="bg-black text-white p-2 md:p-3 rounded-full hover:bg-gray-800 transition-colors">
                   <i class="fab fa-tiktok"></i>
                 </a>
                 <a href="https://wa.me/224XXXXXXXXX" target="_blank"
-                   class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors">
+                  class="bg-green-600 text-white p-2 md:p-3 rounded-full hover:bg-green-700 transition-colors">
                   <i class="fab fa-whatsapp"></i>
                 </a>
               </div>
@@ -218,31 +260,31 @@
         </div>
 
         <!-- Mission & Vision -->
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-            <div class="text-center mb-6">
-              <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-bullseye text-2xl text-primary"></i>
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">
+          <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg card-hover">
+            <div class="text-center mb-4 md:mb-6">
+              <div class="bg-primary/10 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <i class="fas fa-bullseye text-xl md:text-2xl text-primary"></i>
               </div>
-              <h3 class="text-2xl font-bold text-primary">Notre Mission</h3>
+              <h3 class="text-xl md:text-2xl font-bold text-primary">Notre Mission</h3>
             </div>
             <p class="text-gray-700 leading-relaxed">
               Aider, accompagner, former et insérer les personnes en situation de handicap, 
-              particulièrement en Guinée Conakry, en créant un centre d'accueil spécialisé 
+              particulièrement en Guinée Conakry, en créant un centre d'accueil spécialisé
               et en luttant contre l'exclusion sociale.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-            <div class="text-center mb-6">
-              <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-eye text-2xl text-secondary"></i>
+          <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg card-hover">
+            <div class="text-center mb-4 md:mb-6">
+              <div class="bg-secondary/10 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <i class="fas fa-eye text-xl md:text-2xl text-secondary"></i>
               </div>
-              <h3 class="text-2xl font-bold text-secondary">Notre Vision</h3>
+              <h3 class="text-xl md:text-2xl font-bold text-secondary">Notre Vision</h3>
             </div>
             <p class="text-gray-700 leading-relaxed">
-              Une société inclusive où chaque personne, indépendamment de son handicap, 
-              peut vivre dans la dignité, développer son potentiel et contribuer 
+              Une société inclusive où chaque personne, indépendamment de son handicap,
+              peut vivre dans la dignité, développer son potentiel et contribuer
               pleinement à la communauté.
             </p>
           </div>
@@ -250,14 +292,14 @@
 
         <!-- Téléchargements -->
         <div class="text-center">
-          <h3 class="text-2xl font-bold text-primary mb-6">Documents officiels</h3>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/documents/statuts-ynesidd.pdf" download 
-               class="bg-primary text-white px-6 py-3 rounded-full hover:bg-primary/90 transition-colors">
+          <h3 class="text-xl md:text-2xl font-bold text-primary mb-4 md:mb-6">Documents officiels</h3>
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+            <a href="/documents/statuts-ynesidd.pdf" download
+               class="bg-primary text-white px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-primary/90 transition-colors">
               <i class="fas fa-download mr-2"></i>Télécharger les Statuts
             </a>
             <a href="/documents/ebook-ynesidd.pdf" download
-               class="bg-secondary text-white px-6 py-3 rounded-full hover:bg-secondary/90 transition-colors">
+              class="bg-secondary text-white px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-secondary/90 transition-colors">
               <i class="fas fa-book mr-2"></i>Télécharger l'E-book
             </a>
           </div>
@@ -267,30 +309,30 @@
   </section>
 
   <!-- Section Nos Actions (Accueil, Accompagnement, Formation) -->
-  <section id="services" class="py-20 bg-gray-50">
+  <section id="services" class="py-16 md:py-20 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-primary mb-6">Nos Actions</h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">Nos Actions</h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Trois piliers fondamentaux pour une prise en charge globale et humaine
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-8 mb-16">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16 services-grid">
           <!-- Accueil -->
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-            <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white text-center">
-              <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-home text-2xl"></i>
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4 md:p-6 text-white text-center">
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <i class="fas fa-home text-xl md:text-2xl"></i>
               </div>
-              <h3 class="text-2xl font-bold">ACCUEIL</h3>
+              <h3 class="text-xl md:text-2xl font-bold">ACCUEIL</h3>
             </div>
-            <div class="p-6">
-              <p class="text-gray-700 mb-4">
+            <div class="p-4 md:p-6">
+              <p class="text-gray-700 mb-3 md:mb-4">
                 Un espace sécurisé et adapté pour les personnes en situation de handicap
               </p>
-              <ul class="space-y-2 text-sm text-gray-600">
+              <ul class="space-y-1 md:space-y-2 text-sm text-gray-600">
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Centre d'hébergement à Conakry</li>
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Sécurité et soins adaptés</li>
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Orientation personnalisée</li>
@@ -301,17 +343,17 @@
 
           <!-- Accompagnement -->
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-            <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 text-white text-center">
-              <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-hands-helping text-2xl"></i>
+            <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4 md:p-6 text-white text-center">
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <i class="fas fa-hands-helping text-xl md:text-2xl"></i>
               </div>
-              <h3 class="text-2xl font-bold">ACCOMPAGNEMENT</h3>
+              <h3 class="text-xl md:text-2xl font-bold">ACCOMPAGNEMENT</h3>
             </div>
-            <div class="p-6">
-              <p class="text-gray-700 mb-4">
+            <div class="p-4 md:p-6">
+              <p class="text-gray-700 mb-3 md:mb-4">
                 Soutien global et personnalisé pour favoriser l'autonomie
               </p>
-              <ul class="space-y-2 text-sm text-gray-600">
+              <ul class="space-y-1 md:space-y-2 text-sm text-gray-600">
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi psycho-social</li>
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Aide administrative</li>
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi médical</li>
@@ -322,17 +364,17 @@
 
           <!-- Formation -->
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-            <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
-              <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-graduation-cap text-2xl"></i>
+            <div class="bg-gradient-to-r from-green-500 to-green-600 p-4 md:p-6 text-white text-center">
+              <div class="w-14 h-14 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <i class="fas fa-graduation-cap text-xl md:text-2xl"></i>
               </div>
-              <h3 class="text-2xl font-bold">FORMATION</h3>
+              <h3 class="text-xl md:text-2xl font-bold">FORMATION</h3>
             </div>
-            <div class="p-6">
-              <p class="text-gray-700 mb-4">
+            <div class="p-4 md:p-6">
+              <p class="text-gray-700 mb-3 md:mb-4">
                 Développement des compétences pour l'insertion professionnelle
               </p>
-              <ul class="space-y-2 text-sm text-gray-600">
+              <ul class="space-y-1 md:space-y-2 text-sm text-gray-600">
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Formation professionnelle</li>
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Ateliers vie quotidienne</li>
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Sensibilisation familles</li>
@@ -343,31 +385,31 @@
         </div>
 
         <!-- Types de handicaps pris en charge -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg">
-          <h3 class="text-2xl font-bold text-primary mb-8 text-center">Types de handicaps pris en charge</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg">
-              <i class="fas fa-brain text-blue-600 text-xl"></i>
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
+          <h3 class="text-xl md:text-2xl font-bold text-primary mb-6 md:mb-8 text-center">Types de handicaps pris en charge</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            <div class="flex items-center space-x-2 md:space-x-3 p-3 md:p-4 bg-blue-50 rounded-lg">
+              <i class="fas fa-brain text-blue-600 text-lg md:text-xl"></i>
               <span class="font-medium">Handicap mental</span>
             </div>
-            <div class="flex items-center space-x-3 p-4 bg-purple-50 rounded-lg">
-              <i class="fas fa-wheelchair text-purple-600 text-xl"></i>
+            <div class="flex items-center space-x-2 md:space-x-3 p-3 md:p-4 bg-purple-50 rounded-lg">
+              <i class="fas fa-wheelchair text-purple-600 text-lg md:text-xl"></i>
               <span class="font-medium">Handicap physique</span>
             </div>
-            <div class="flex items-center space-x-3 p-4 bg-green-50 rounded-lg">
-              <i class="fas fa-eye-slash text-green-600 text-xl"></i>
+            <div class="flex items-center space-x-2 md:space-x-3 p-3 md:p-4 bg-green-50 rounded-lg">
+              <i class="fas fa-eye-slash text-green-600 text-lg md:text-xl"></i>
               <span class="font-medium">Handicap sensoriel</span>
             </div>
-            <div class="flex items-center space-x-3 p-4 bg-yellow-50 rounded-lg">
-              <i class="fas fa-puzzle-piece text-yellow-600 text-xl"></i>
+            <div class="flex items-center space-x-2 md:space-x-3 p-3 md:p-4 bg-yellow-50 rounded-lg">
+              <i class="fas fa-puzzle-piece text-yellow-600 text-lg md:text-xl"></i>
               <span class="font-medium">Autisme</span>
             </div>
-            <div class="flex items-center space-x-3 p-4 bg-red-50 rounded-lg">
-              <i class="fas fa-heart text-red-600 text-xl"></i>
+            <div class="flex items-center space-x-2 md:space-x-3 p-3 md:p-4 bg-red-50 rounded-lg">
+              <i class="fas fa-heart text-red-600 text-lg md:text-xl"></i>
               <span class="font-medium">Handicap psychique</span>
             </div>
-            <div class="flex items-center space-x-3 p-4 bg-indigo-50 rounded-lg">
-              <i class="fas fa-user-injured text-indigo-600 text-xl"></i>
+            <div class="flex items-center space-x-2 md:space-x-3 p-3 md:p-4 bg-indigo-50 rounded-lg">
+              <i class="fas fa-user-injured text-indigo-600 text-lg md:text-xl"></i>
               <span class="font-medium">Handicap invisible</span>
             </div>
           </div>
@@ -377,49 +419,49 @@
   </section>
 
   <!-- Section Dons HelloAsso -->
-  <section id="don" class="py-20 bg-gradient-to-r from-secondary to-purple-600 text-white">
+  <section id="don" class="py-16 md:py-20 bg-gradient-to-r from-secondary to-purple-600 text-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-6">Soutenez notre mission</h2>
-        <p class="text-xl mb-8 opacity-90">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6">Soutenez notre mission</h2>
+        <p class="text-lg md:text-xl mb-6 md:mb-8 opacity-90">
           Votre générosité permet de changer concrètement la vie des personnes en situation de handicap
         </p>
         
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <div class="text-3xl font-bold mb-2">50€</div>
-            <p class="text-sm opacity-90">Financement d'un kit d'hygiène pour 1 mois</p>
+        <div class="grid md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6">
+            <div class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">50€</div>
+            <p class="text-xs md:text-sm opacity-90">Financement d'un kit d'hygiène pour 1 mois</p>
           </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <div class="text-3xl font-bold mb-2">100€</div>
-            <p class="text-sm opacity-90">Prise en charge médicale d'une personne</p>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6">
+            <div class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">100€</div>
+            <p class="text-xs md:text-sm opacity-90">Prise en charge médicale d'une personne</p>
           </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <div class="text-3xl font-bold mb-2">200€</div>
-            <p class="text-sm opacity-90">Formation professionnelle complète</p>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6">
+            <div class="text-2xl md:text-3xl font-bold mb-1 md:mb-2">200€</div>
+            <p class="text-xs md:text-sm opacity-90">Formation professionnelle complète</p>
           </div>
         </div>
 
         <!-- Widget HelloAsso -->
-        <div class="bg-white rounded-2xl p-8 shadow-2xl">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6">Faire un don sécurisé</h3>
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
+          <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Faire un don sécurisé</h3>
           <iframe 
-            src="https://www.helloasso.com/associations/ynesidd/formulaires/1/widget" 
-            class="w-full h-96 rounded-lg border-0">
+            src="https://www.helloasso.com/associations/ynesidd/formulaires/1/widget"
+            class="w-full h-80 md:h-96 rounded-lg border-0">
           </iframe>
-          <p class="text-sm text-gray-600 mt-4">
-            <i class="fas fa-shield-alt mr-2"></i>
+          <p class="text-xs md:text-sm text-gray-600 mt-3 md:mt-4">
+            <i class="fas fa-shield-alt mr-1 md:mr-2"></i>
             Paiement 100% sécurisé • Reçu fiscal automatique • Déduction fiscale 66%
           </p>
         </div>
 
         <!-- Adhésion -->
-        <div class="mt-12 bg-white/10 backdrop-blur-sm rounded-xl p-6">
-          <h3 class="text-xl font-bold mb-4">Devenir membre de YNESIDD</h3>
-          <p class="mb-4 opacity-90">Rejoignez notre communauté et participez activement à nos actions</p>
+        <div class="mt-10 md:mt-12 bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4">Devenir membre de YNESIDD</h3>
+          <p class="mb-3 md:mb-4 opacity-90">Rejoignez notre communauté et participez activement à nos actions</p>
           <iframe 
-            src="https://www.helloasso.com/associations/ynesidd/adhesions/1/widget" 
-            class="w-full h-64 rounded-lg bg-white">
+            src="https://www.helloasso.com/associations/ynesidd/adhesions/1/widget"
+            class="w-full h-56 md:h-64 rounded-lg bg-white">
           </iframe>
         </div>
       </div>
@@ -427,42 +469,42 @@
   </section>
 
   <!-- Section Galerie -->
-  <section id="galerie" class="py-20 bg-white">
+  <section id="galerie" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-primary mb-6">Galerie</h2>
-          <p class="text-xl text-gray-600">Découvrez nos actions sur le terrain</p>
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">Galerie</h2>
+          <p class="text-lg md:text-xl text-gray-600">Découvrez nos actions sur le terrain</p>
         </div>
 
         <!-- Filtres -->
-        <div class="flex flex-wrap justify-center gap-4 mb-12" x-data="{ activeFilter: 'all' }">
-          <button @click="activeFilter = 'all'" 
-                  :class="activeFilter === 'all' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
-                  class="px-6 py-2 rounded-full transition-colors">
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-12" x-data="{ activeFilter: 'all' }">
+          <button @click="activeFilter = 'all'"
+                   :class="activeFilter === 'all' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
+                  class="px-4 py-1 md:px-6 md:py-2 rounded-full transition-colors text-sm md:text-base">
             Tout
           </button>
-          <button @click="activeFilter = 'photos'" 
-                  :class="activeFilter === 'photos' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
-                  class="px-6 py-2 rounded-full transition-colors">
+          <button @click="activeFilter = 'photos'"
+                   :class="activeFilter === 'photos' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
+                  class="px-4 py-1 md:px-6 md:py-2 rounded-full transition-colors text-sm md:text-base">
             Photos
           </button>
-          <button @click="activeFilter = 'videos'" 
-                  :class="activeFilter === 'videos' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
-                  class="px-6 py-2 rounded-full transition-colors">
+          <button @click="activeFilter = 'videos'"
+                   :class="activeFilter === 'videos' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
+                  class="px-4 py-1 md:px-6 md:py-2 rounded-full transition-colors text-sm md:text-base">
             Vidéos
           </button>
-          <button @click="activeFilter = 'temoignages'" 
-                  :class="activeFilter === 'temoignages' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
-                  class="px-6 py-2 rounded-full transition-colors">
+          <button @click="activeFilter = 'temoignages'"
+                   :class="activeFilter === 'temoignages' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'"
+                  class="px-4 py-1 md:px-6 md:py-2 rounded-full transition-colors text-sm md:text-base">
             Témoignages
           </button>
         </div>
 
         <!-- Grille de galerie -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" x-data="{ 
-          lightbox: false, 
-          currentMedia: null,
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 gallery-grid" x-data="{
+           lightbox: false,
+           currentMedia: null,
           openLightbox(media) {
             this.currentMedia = media;
             this.lightbox = true;
@@ -472,88 +514,88 @@
           <!-- Photos -->
           <div class="group cursor-pointer" @click="openLightbox({type: 'image', src: '/images/action1.jpg', title: 'Centre d\'accueil Conakry'})">
             <div class="relative overflow-hidden rounded-xl shadow-lg">
-              <img src="logo.png" alt="Centre d'accueil" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+              <img src="logo.png" alt="Centre d'accueil" class="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-300">
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <i class="fas fa-search-plus text-white text-xl md:text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
               </div>
             </div>
-            <h3 class="mt-3 font-semibold text-gray-800">Centre d'accueil Conakry</h3>
+            <h3 class="mt-2 md:mt-3 font-semibold text-gray-800 text-sm md:text-base">Centre d'accueil Conakry</h3>
           </div>
 
           <div class="group cursor-pointer" @click="openLightbox({type: 'image', src: '/images/formation1.jpg', title: 'Atelier de formation'})">
             <div class="relative overflow-hidden rounded-xl shadow-lg">
-              <img src="logo.png" alt="Formation" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+              <img src="logo.png" alt="Formation" class="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-300">
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <i class="fas fa-search-plus text-white text-xl md:text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
               </div>
             </div>
-            <h3 class="mt-3 font-semibold text-gray-800">Atelier de formation</h3>
+            <h3 class="mt-2 md:mt-3 font-semibold text-gray-800 text-sm md:text-base">Atelier de formation</h3>
           </div>
 
           <!-- Vidéos -->
           <div class="group cursor-pointer" @click="openLightbox({type: 'video', src: 'https://www.youtube.com/embed/VIDEO_ID1', title: 'Témoignage Maria'})">
             <div class="relative overflow-hidden rounded-xl shadow-lg">
-              <img src="logo.png" alt="Vidéo témoignage" class="w-full h-64 object-cover">
+              <img src="logo.png" alt="Vidéo témoignage" class="w-full h-48 md:h-64 object-cover">
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center">
-                  <i class="fas fa-play text-xl ml-1"></i>
+                <div class="bg-red-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                  <i class="fas fa-play text-lg md:text-xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <h3 class="mt-3 font-semibold text-gray-800">Témoignage de Maria</h3>
+            <h3 class="mt-2 md:mt-3 font-semibold text-gray-800 text-sm md:text-base">Témoignage de Maria</h3>
           </div>
 
           <div class="group cursor-pointer" @click="openLightbox({type: 'video', src: 'https://www.youtube.com/embed/VIDEO_ID2', title: 'Nos actions en Guinée'})">
             <div class="relative overflow-hidden rounded-xl shadow-lg">
-              <img src="logo.png" alt="Actions Guinée" class="w-full h-64 object-cover">
+              <img src="logo.png" alt="Actions Guinée" class="w-full h-48 md:h-64 object-cover">
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center">
-                  <i class="fas fa-play text-xl ml-1"></i>
+                <div class="bg-red-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                  <i class="fas fa-play text-lg md:text-xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <h3 class="mt-3 font-semibold text-gray-800">Nos actions en Guinée</h3>
+            <h3 class="mt-2 md:mt-3 font-semibold text-gray-800 text-sm md:text-base">Nos actions en Guinée</h3>
           </div>
 
           <!-- Plus de contenu -->
           <div class="group cursor-pointer" @click="openLightbox({type: 'image', src: '/images/accompagnement1.jpg', title: 'Accompagnement personnalisé'})">
             <div class="relative overflow-hidden rounded-xl shadow-lg">
-              <img src="logo.png" alt="Accompagnement" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+              <img src="logo.png" alt="Accompagnement" class="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-300">
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <i class="fas fa-search-plus text-white text-xl md:text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
               </div>
             </div>
-            <h3 class="mt-3 font-semibold text-gray-800">Accompagnement personnalisé</h3>
+            <h3 class="mt-2 md:mt-3 font-semibold text-gray-800 text-sm md:text-base">Accompagnement personnalisé</h3>
           </div>
 
           <div class="group cursor-pointer" @click="openLightbox({type: 'video', src: 'https://www.youtube.com/embed/VIDEO_ID3', title: 'Formation professionnelle'})">
             <div class="relative overflow-hidden rounded-xl shadow-lg">
-              <img src="logo.png" alt="Formation pro" class="w-full h-64 object-cover">
+              <img src="logo.png" alt="Formation pro" class="w-full h-48 md:h-64 object-cover">
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center">
-                  <i class="fas fa-play text-xl ml-1"></i>
+                <div class="bg-red-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                  <i class="fas fa-play text-lg md:text-xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <h3 class="mt-3 font-semibold text-gray-800">Formation professionnelle</h3>
+            <h3 class="mt-2 md:mt-3 font-semibold text-gray-800 text-sm md:text-base">Formation professionnelle</h3>
           </div>
         </div>
 
         <!-- Lightbox -->
         <div x-show="lightbox" x-transition.opacity class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
           <div class="relative max-w-4xl w-full">
-            <button @click="lightbox = false" class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300">
+            <button @click="lightbox = false" class="absolute -top-10 md:-top-12 right-0 text-white text-xl md:text-2xl hover:text-gray-300">
               <i class="fas fa-times"></i>
             </button>
             
             <div x-show="currentMedia && currentMedia.type === 'image'">
               <img :src="currentMedia?.src" :alt="currentMedia?.title" class="w-full h-auto rounded-lg">
-              <h3 class="text-white text-xl mt-4 text-center" x-text="currentMedia?.title"></h3>
+              <h3 class="text-white text-lg md:text-xl mt-3 md:mt-4 text-center" x-text="currentMedia?.title"></h3>
             </div>
             
             <div x-show="currentMedia && currentMedia.type === 'video'" class="aspect-video">
               <iframe :src="currentMedia?.src" class="w-full h-full rounded-lg" allowfullscreen></iframe>
-              <h3 class="text-white text-xl mt-4 text-center" x-text="currentMedia?.title"></h3>
+              <h3 class="text-white text-lg md:text-xl mt-3 md:mt-4 text-center" x-text="currentMedia?.title"></h3>
             </div>
           </div>
         </div>
@@ -562,28 +604,28 @@
   </section>
 
   <!-- Section Blog -->
-  <section id="blog" class="py-20 bg-gray-50">
+  <section id="blog" class="py-16 md:py-20 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-primary mb-6">Notre Blog</h2>
-          <p class="text-xl text-gray-600">Actualités, témoignages et sensibilisation</p>
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">Notre Blog</h2>
+          <p class="text-lg md:text-xl text-gray-600">Actualités, témoignages et sensibilisation</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 blog-grid">
           <!-- Article 1 -->
           <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-            <img src="logo.png" alt="Article 1" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <i class="fas fa-calendar mr-2"></i>
+            <img src="logo.png" alt="Article 1" class="w-full h-40 md:h-48 object-cover">
+            <div class="p-4 md:p-6">
+              <div class="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3">
+                <i class="fas fa-calendar mr-1 md:mr-2"></i>
                 <span>15 Mars 2024</span>
-                <span class="mx-2">•</span>
-                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Sensibilisation</span>
+                <span class="mx-1 md:mx-2">•</span>
+                <span class="bg-blue-100 text-blue-800 px-1 py-0.5 md:px-2 md:py-1 rounded-full text-xs">Sensibilisation</span>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Comprendre l'autisme : Guide pour les familles</h3>
-              <p class="text-gray-600 mb-4">Un guide complet pour mieux comprendre l'autisme et accompagner les personnes concernées...</p>
-              <a href="/blog/comprendre-autisme" class="text-primary hover:text-primary/80 font-medium">
+              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Comprendre l'autisme : Guide pour les familles</h3>
+              <p class="text-sm md:text-base text-gray-600 mb-3 md:mb-4">Un guide complet pour mieux comprendre l'autisme et accompagner les personnes concernées...</p>
+              <a href="/blog/comprendre-autisme" class="text-primary hover:text-primary/80 font-medium text-sm md:text-base">
                 Lire la suite <i class="fas fa-arrow-right ml-1"></i>
               </a>
             </div>
@@ -591,17 +633,17 @@
 
           <!-- Article 2 -->
           <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-            <img src="logo.png" alt="Article 2" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <i class="fas fa-calendar mr-2"></i>
+            <img src="logo.png" alt="Article 2" class="w-full h-40 md:h-48 object-cover">
+            <div class="p-4 md:p-6">
+              <div class="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3">
+                <i class="fas fa-calendar mr-1 md:mr-2"></i>
                 <span>10 Mars 2024</span>
-                <span class="mx-2">•</span>
-                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Témoignage</span>
+                <span class="mx-1 md:mx-2">•</span>
+                <span class="bg-green-100 text-green-800 px-1 py-0.5 md:px-2 md:py-1 rounded-full text-xs">Témoignage</span>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Témoignage d'Amadou : "J'ai retrouvé ma dignité"</h3>
-              <p class="text-gray-600 mb-4">L'histoire inspirante d'Amadou, bénéficiaire de nos programmes d'accompagnement...</p>
-              <a href="/blog/temoignage-amadou" class="text-primary hover:text-primary/80 font-medium">
+              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Témoignage d'Amadou : "J'ai retrouvé ma dignité"</h3>
+              <p class="text-sm md:text-base text-gray-600 mb-3 md:mb-4">L'histoire inspirante d'Amadou, bénéficiaire de nos programmes d'accompagnement...</p>
+              <a href="/blog/temoignage-amadou" class="text-primary hover:text-primary/80 font-medium text-sm md:text-base">
                 Lire la suite <i class="fas fa-arrow-right ml-1"></i>
               </a>
             </div>
@@ -609,17 +651,17 @@
 
           <!-- Article 3 -->
           <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-            <img src="logo.png" alt="Article 3" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <i class="fas fa-calendar mr-2"></i>
+            <img src="logo.png" alt="Article 3" class="w-full h-40 md:h-48 object-cover">
+            <div class="p-4 md:p-6">
+              <div class="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3">
+                <i class="fas fa-calendar mr-1 md:mr-2"></i>
                 <span>5 Mars 2024</span>
-                <span class="mx-2">•</span>
-                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Actualité</span>
+                <span class="mx-1 md:mx-2">•</span>
+                <span class="bg-purple-100 text-purple-800 px-1 py-0.5 md:px-2 md:py-1 rounded-full text-xs">Actualité</span>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Ouverture prochaine de notre centre à Conakry</h3>
-              <p class="text-gray-600 mb-4">Nous sommes fiers d'annoncer l'ouverture prochaine de notre centre d'accueil...</p>
-              <a href="/blog/ouverture-centre-conakry" class="text-primary hover:text-primary/80 font-medium">
+              <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Ouverture prochaine de notre centre à Conakry</h3>
+              <p class="text-sm md:text-base text-gray-600 mb-3 md:mb-4">Nous sommes fiers d'annoncer l'ouverture prochaine de notre centre d'accueil...</p>
+              <a href="/blog/ouverture-centre-conakry" class="text-primary hover:text-primary/80 font-medium text-sm md:text-base">
                 Lire la suite <i class="fas fa-arrow-right ml-1"></i>
               </a>
             </div>
@@ -627,13 +669,13 @@
         </div>
 
         <!-- Newsletter -->
-        <div class="mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white text-center">
-          <h3 class="text-2xl font-bold mb-4">Restez informé(e)</h3>
-          <p class="mb-6 opacity-90">Recevez nos dernières actualités et témoignages directement dans votre boîte mail</p>
-          <form class="max-w-md mx-auto flex gap-4" x-data="{ email: '' }" @submit.prevent="subscribeNewsletter">
-            <input type="email" x-model="email" placeholder="Votre email" 
-                   class="flex-1 px-4 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50">
-            <button type="submit" class="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
+        <div class="mt-12 md:mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 md:p-8 text-white text-center">
+          <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">Restez informé(e)</h3>
+          <p class="mb-4 md:mb-6 opacity-90">Recevez nos dernières actualités et témoignages directement dans votre boîte mail</p>
+          <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 md:gap-4" x-data="{ email: '' }" @submit.prevent="subscribeNewsletter">
+            <input type="email" x-model="email" placeholder="Votre email"
+                   class="flex-1 px-4 py-2 md:py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm md:text-base">
+            <button type="submit" class="bg-white text-primary px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-gray-100 transition-colors text-sm md:text-base">
               S'abonner
             </button>
           </form>
@@ -643,79 +685,79 @@
   </section>
 
   <!-- Section Contact -->
-  <section id="contact" class="py-20 bg-white">
+  <section id="contact" class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-primary mb-6">Contactez-nous</h2>
-          <p class="text-xl text-gray-600">Nous sommes là pour répondre à vos questions</p>
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4 md:mb-6">Contactez-nous</h2>
+          <p class="text-lg md:text-xl text-gray-600">Nous sommes là pour répondre à vos questions</p>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-12">
+        <div class="grid lg:grid-cols-2 gap-8 md:gap-12 contact-grid">
           <!-- Informations de contact -->
           <div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-8">Nos coordonnées</h3>
+            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 md:mb-8">Nos coordonnées</h3>
             
-            <div class="space-y-6">
-              <div class="flex items-start space-x-4">
-                <div class="bg-primary/10 p-3 rounded-full">
+            <div class="space-y-4 md:space-y-6">
+              <div class="flex items-start space-x-3 md:space-x-4">
+                <div class="bg-primary/10 p-2 md:p-3 rounded-full">
                   <i class="fas fa-map-marker-alt text-primary"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-800">Siège France</h4>
-                  <p class="text-gray-600">123 Rue de la République<br>75001 Paris, France</p>
+                  <p class="text-gray-600 text-sm md:text-base">123 Rue de la République<br>75001 Paris, France</p>
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="bg-secondary/10 p-3 rounded-full">
+              <div class="flex items-start space-x-3 md:space-x-4">
+                <div class="bg-secondary/10 p-2 md:p-3 rounded-full">
                   <i class="fas fa-map-marker-alt text-secondary"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-800">Centre Guinée</h4>
-                  <p class="text-gray-600">Quartier Kaloum<br>Conakry, Guinée</p>
+                  <p class="text-gray-600 text-sm md:text-base">Quartier Kaloum<br>Conakry, Guinée</p>
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="bg-green-100 p-3 rounded-full">
+              <div class="flex items-start space-x-3 md:space-x-4">
+                <div class="bg-green-100 p-2 md:p-3 rounded-full">
                   <i class="fas fa-envelope text-green-600"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-800">Email</h4>
-                  <p class="text-gray-600">mariacomnos2002@yahoo.fr</p>
+                  <p class="text-gray-600 text-sm md:text-base">mariacomnos2002@yahoo.fr</p>
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="bg-blue-100 p-3 rounded-full">
+              <div class="flex items-start space-x-3 md:space-x-4">
+                <div class="bg-blue-100 p-2 md:p-3 rounded-full">
                   <i class="fas fa-phone text-blue-600"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-800">Téléphone</h4>
-                  <p class="text-gray-600">+33 X XX XX XX XX (France)<br>+224 XXX XXX XXX (Guinée)</p>
+                  <p class="text-gray-600 text-sm md:text-base">+33 X XX XX XX XX (France)<br>+224 XXX XXX XXX (Guinée)</p>
                 </div>
               </div>
             </div>
 
             <!-- Réseaux sociaux -->
-            <div class="mt-8">
-              <h4 class="font-semibold text-gray-800 mb-4">Suivez-nous</h4>
-              <div class="flex space-x-4">
-                <a href="https://facebook.com/ynesidd" target="_blank" 
-                   class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
+            <div class="mt-6 md:mt-8">
+              <h4 class="font-semibold text-gray-800 mb-3 md:mb-4">Suivez-nous</h4>
+              <div class="flex space-x-3 md:space-x-4">
+                <a href="https://facebook.com/ynesidd" target="_blank"
+                   class="bg-blue-600 text-white p-2 md:p-3 rounded-full hover:bg-blue-700 transition-colors">
                   <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="https://youtube.com/@ynesidd" target="_blank"
-                   class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors">
+                  class="bg-red-600 text-white p-2 md:p-3 rounded-full hover:bg-red-700 transition-colors">
                   <i class="fab fa-youtube"></i>
                 </a>
                 <a href="https://tiktok.com/@ynesidd" target="_blank"
-                   class="bg-black text-white p-3 rounded-full hover:bg-gray-800 transition-colors">
+                  class="bg-black text-white p-2 md:p-3 rounded-full hover:bg-gray-800 transition-colors">
                   <i class="fab fa-tiktok"></i>
                 </a>
                 <a href="https://instagram.com/ynesidd" target="_blank"
-                   class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition-colors">
+                  class="bg-pink-600 text-white p-2 md:p-3 rounded-full hover:bg-pink-700 transition-colors">
                   <i class="fab fa-instagram"></i>
                 </a>
               </div>
@@ -723,11 +765,11 @@
           </div>
 
           <!-- Formulaire de contact -->
-          <div class="bg-gray-50 rounded-2xl p-8">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
+          <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
+            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Envoyez-nous un message</h3>
             
-            <form id="contact-form" class="space-y-6" x-data="{ 
-              loading: false,
+            <form id="contact-form" class="space-y-4 md:space-y-6" x-data="{
+               loading: false,
               showSuccess: false,
               formData: {
                 name: '',
@@ -737,28 +779,29 @@
               }
             }" @submit.prevent="submitForm">
               
-              <div class="grid md:grid-cols-2 gap-4">
+              <div class="grid md:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">                    Nom complet *
+                  <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
+                   Nom complet *
                   </label>
                   <input type="text" x-model="formData.name" required
-                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                         class="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base">
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                  <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
                     Email *
                   </label>
                   <input type="email" x-model="formData.email" required
-                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                         class="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base">
                 </div>
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
                   Sujet *
                 </label>
                 <select x-model="formData.subject" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        class="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base">
                   <option value="">Choisissez un sujet</option>
                   <option value="information">Demande d'information</option>
                   <option value="benevolat">Bénévolat</option>
@@ -769,27 +812,27 @@
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
                   Message *
                 </label>
-                <textarea x-model="formData.message" rows="5" required
-                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                <textarea x-model="formData.message" rows="4" required
+                          class="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base"
                           placeholder="Votre message..."></textarea>
               </div>
 
               <button type="submit" :disabled="loading"
-                      class="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                     class="w-full bg-primary text-white py-2 md:py-3 px-4 md:px-6 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base">
                 <span x-show="!loading">Envoyer le message</span>
                 <span x-show="loading" class="flex items-center justify-center">
-                  <i class="fas fa-spinner fa-spin mr-2"></i>
+                  <i class="fas fa-spinner fa-spin mr-1 md:mr-2"></i>
                   Envoi en cours...
                 </span>
               </button>
 
               <!-- Message de succès -->
-              <div x-show="showSuccess" x-transition 
-                   class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
-                <i class="fas fa-check-circle mr-2"></i>
+              <div x-show="showSuccess" x-transition
+                   class="bg-green-100 border border-green-400 text-green-700 px-3 py-2 md:px-4 md:py-3 rounded-lg text-sm md:text-base">
+                <i class="fas fa-check-circle mr-1 md:mr-2"></i>
                 Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
               </div>
             </form>
@@ -800,21 +843,21 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-16">
+  <footer class="bg-gray-900 text-white py-12 md:py-16">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 footer-grid">
           
           <!-- À propos -->
           <div>
-            <div class="flex items-center space-x-2 mb-6">
-              <img src="logo.png" alt="YNESIDD" class="h-10 w-10">
-              <span class="text-xl font-bold">YNESIDD</span>
+            <div class="flex items-center space-x-2 mb-4 md:mb-6">
+              <img src="logo.png" alt="YNESIDD" class="h-8 md:h-10 w-8 md:w-10">
+              <span class="text-lg md:text-xl font-bold">YNESIDD</span>
             </div>
-            <p class="text-gray-300 mb-4">
+            <p class="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">
               Association dédiée à l'accompagnement et l'insertion des personnes en situation de handicap.
             </p>
-            <div class="flex space-x-3">
+            <div class="flex space-x-2 md:space-x-3">
               <a href="https://facebook.com/ynesidd" class="text-gray-400 hover:text-white transition-colors">
                 <i class="fab fa-facebook-f"></i>
               </a>
@@ -832,50 +875,50 @@
 
           <!-- Liens rapides -->
           <div>
-            <h3 class="text-lg font-semibold mb-6">Liens rapides</h3>
-            <ul class="space-y-3">
-              <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">À propos</a></li>
-              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">Nos actions</a></li>
-              <li><a href="#galerie" class="text-gray-300 hover:text-white transition-colors">Galerie</a></li>
-              <li><a href="#blog" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+            <h3 class="text-base md:text-lg font-semibold mb-4 md:mb-6">Liens rapides</h3>
+            <ul class="space-y-2 md:space-y-3">
+              <li><a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">À propos</a></li>
+              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Nos actions</a></li>
+              <li><a href="#galerie" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Galerie</a></li>
+              <li><a href="#blog" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Blog</a></li>
+              <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Contact</a></li>
             </ul>
           </div>
 
           <!-- Nos actions -->
           <div>
-            <h3 class="text-lg font-semibold mb-6">Nos actions</h3>
-            <ul class="space-y-3">
-              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">Accueil</a></li>
-              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">Accompagnement</a></li>
-              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">Formation</a></li>
-              <li><a href="#don" class="text-gray-300 hover:text-white transition-colors">Faire un don</a></li>
-              <li><a href="/documents/statuts-ynesidd.pdf" class="text-gray-300 hover:text-white transition-colors">Statuts</a></li>
+            <h3 class="text-base md:text-lg font-semibold mb-4 md:mb-6">Nos actions</h3>
+            <ul class="space-y-2 md:space-y-3">
+              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Accueil</a></li>
+              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Accompagnement</a></li>
+              <li><a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Formation</a></li>
+              <li><a href="#don" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Faire un don</a></li>
+              <li><a href="/documents/statuts-ynesidd.pdf" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Statuts</a></li>
             </ul>
           </div>
 
           <!-- Contact -->
           <div>
-            <h3 class="text-lg font-semibold mb-6">Contact</h3>
-            <div class="space-y-3 text-gray-300">
-              <p><i class="fas fa-envelope mr-2"></i>mariacomnos2002@yahoo.fr</p>
-              <p><i class="fas fa-phone mr-2"></i>+33 X XX XX XX XX</p>
-              <p><i class="fas fa-map-marker-alt mr-2"></i>Paris, France</p>
-              <p><i class="fas fa-map-marker-alt mr-2"></i>Conakry, Guinée</p>
+            <h3 class="text-base md:text-lg font-semibold mb-4 md:mb-6">Contact</h3>
+            <div class="space-y-2 md:space-y-3 text-gray-300 text-sm md:text-base">
+              <p><i class="fas fa-envelope mr-1 md:mr-2"></i>mariacomnos2002@yahoo.fr</p>
+              <p><i class="fas fa-phone mr-1 md:mr-2"></i>+33 X XX XX XX XX</p>
+              <p><i class="fas fa-map-marker-alt mr-1 md:mr-2"></i>Paris, France</p>
+              <p><i class="fas fa-map-marker-alt mr-1 md:mr-2"></i>Conakry, Guinée</p>
             </div>
           </div>
         </div>
 
-        <hr class="border-gray-700 my-8">
+        <hr class="border-gray-700 my-6 md:my-8">
         
         <div class="flex flex-col md:flex-row justify-between items-center">
-          <p class="text-gray-400 text-sm">
+          <p class="text-gray-400 text-xs md:text-sm">
             © 2025 YNESIDD. Par YATTARA Ousmane Tous droits réservés.
           </p>
-          <div class="flex space-x-6 mt-4 md:mt-0">
-            <a href="/mentions-legales" class="text-gray-400 hover:text-white text-sm transition-colors">Mentions légales</a>
-            <a href="/politique-confidentialite" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a>
-            <a href="/cgv" class="text-gray-400 hover:text-white text-sm transition-colors">CGV</a>
+          <div class="flex space-x-4 md:space-x-6 mt-3 md:mt-0">
+            <a href="/mentions-legales" class="text-gray-400 hover:text-white text-xs md:text-sm transition-colors">Mentions légales</a>
+            <a href="/politique-confidentialite" class="text-gray-400 hover:text-white text-xs md:text-sm transition-colors">Politique de confidentialité</a>
+            <a href="/cgv" class="text-gray-400 hover:text-white text-xs md:text-sm transition-colors">CGV</a>
           </div>
         </div>
       </div>
@@ -886,22 +929,22 @@
   <div id="whatsapp-widget" class="fixed bottom-6 right-6 z-40">
     <div x-data="{ showChat: false, messages: [] }" class="relative">
       <!-- Bouton WhatsApp -->
-      <button @click="showChat = !showChat" 
-              class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110">
-        <i class="fab fa-whatsapp text-2xl"></i>
+      <button @click="showChat = !showChat"
+              class="bg-green-500 hover:bg-green-600 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110">
+        <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
       </button>
 
       <!-- Chat Widget -->
       <div x-show="showChat" x-transition.scale.origin.bottom.right
-           class="absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-2xl border overflow-hidden">
+           class="absolute bottom-14 md:bottom-16 right-0 w-72 md:w-80 bg-white rounded-lg shadow-2xl border overflow-hidden">
         
         <!-- Header -->
-        <div class="bg-green-500 text-white p-4">
+        <div class="bg-green-500 text-white p-3 md:p-4">
           <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <img src="logo.png" alt="Maria" class="w-10 h-10 rounded-full">
+            <div class="flex items-center space-x-2 md:space-x-3">
+              <img src="logo.png" alt="Maria" class="w-8 h-8 md:w-10 md:h-10 rounded-full">
               <div>
-                <h4 class="font-semibold">Maria Comnos</h4>
+                <h4 class="font-semibold text-sm md:text-base">Maria Comnos</h4>
                 <p class="text-xs opacity-90">En ligne</p>
               </div>
             </div>
@@ -912,31 +955,31 @@
         </div>
 
         <!-- Messages -->
-        <div class="h-64 overflow-y-auto p-4 bg-gray-50">
-          <div class="bg-white p-3 rounded-lg shadow-sm mb-3">
-            <p class="text-sm">👋 Bonjour ! Je suis Maria, fondatrice de YNESIDD.</p>
-            <p class="text-sm mt-1">Comment puis-je vous aider aujourd'hui ?</p>
+        <div class="h-56 md:h-64 overflow-y-auto p-3 md:p-4 bg-gray-50">
+          <div class="bg-white p-2 md:p-3 rounded-lg shadow-sm mb-2 md:mb-3">
+            <p class="text-xs md:text-sm">👋 Bonjour ! Je suis Maria, fondatrice de YNESIDD.</p>
+            <p class="text-xs md:text-sm mt-1">Comment puis-je vous aider aujourd'hui ?</p>
             <span class="text-xs text-gray-500">Maintenant</span>
           </div>
         </div>
 
         <!-- Actions rapides -->
-        <div class="p-4 border-t">
-          <div class="space-y-2">
-            <button class="w-full text-left p-2 hover:bg-gray-100 rounded text-sm">
+        <div class="p-3 md:p-4 border-t">
+          <div class="space-y-1 md:space-y-2">
+            <button class="w-full text-left p-1 md:p-2 hover:bg-gray-100 rounded text-xs md:text-sm">
               💡 Informations sur nos actions
             </button>
-            <button class="w-full text-left p-2 hover:bg-gray-100 rounded text-sm">
+            <button class="w-full text-left p-1 md:p-2 hover:bg-gray-100 rounded text-xs md:text-sm">
               🤝 Devenir bénévole
             </button>
-            <button class="w-full text-left p-2 hover:bg-gray-100 rounded text-sm">
+            <button class="w-full text-left p-1 md:p-2 hover:bg-gray-100 rounded text-xs md:text-sm">
               💝 Faire un don
             </button>
           </div>
           
-          <a href="https://wa.me/224XXXXXXXXX?text=Bonjour%20Maria,%20je%20souhaite%20en%20savoir%20plus%20sur%20YNESIDD" 
-             target="_blank"
-             class="block w-full bg-green-500 text-white text-center py-2 rounded mt-3 hover:bg-green-600 transition-colors">
+          <a href="https://wa.me/224XXXXXXXXX?text=Bonjour%20Maria,%20je%20souhaite%20en%20savoir%20plus%20sur%20YNESIDD"
+              target="_blank"
+             class="block w-full bg-green-500 text-white text-center py-1 md:py-2 rounded mt-2 md:mt-3 hover:bg-green-600 transition-colors text-sm md:text-base">
             Ouvrir WhatsApp
           </a>
         </div>
@@ -945,9 +988,9 @@
   </div>
 
   <!-- Bouton retour en haut -->
-  <button id="back-to-top" 
-          class="fixed bottom-6 left-6 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90 z-40"
-          onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+  <button id="back-to-top"
+         class="fixed bottom-6 left-6 bg-primary text-white p-2 md:p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90 z-40"
+         onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -1130,37 +1173,38 @@
       });
     }
 
-    // Lazy loading des images
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.classList.remove('lazy');
-          observer.unobserve(img);
-        }
-      });
-    });
+// Lazy loading des images
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.classList.remove('lazy');
+      observer.unobserve(img);
+    }
+  });
+});
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
-      imageObserver.observe(img);
-    });
+document.querySelectorAll('img[data-src]').forEach(img => {
+  imageObserver.observe(img);
+});
+
 
     // Gestion des cookies (RGPD)
     function showCookieBanner() {
       const banner = document.createElement('div');
-      banner.className = 'fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50';
+      banner.className = 'fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-3 md:p-4 z-50';
       banner.innerHTML = `
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-          <p class="text-sm mb-4 md:mb-0">
+          <p class="text-xs md:text-sm mb-3 md:mb-0">
             Nous utilisons des cookies pour améliorer votre expérience sur notre site.
             <a href="/politique-cookies" class="underline">En savoir plus</a>
           </p>
-          <div class="flex space-x-4">
-            <button onclick="acceptCookies()" class="bg-primary px-4 py-2 rounded text-sm hover:bg-primary/90">
+          <div class="flex space-x-3 md:space-x-4">
+            <button onclick="acceptCookies()" class="bg-primary px-3 py-1 md:px-4 md:py-2 rounded text-xs md:text-sm">
               Accepter
             </button>
-            <button onclick="declineCookies()" class="border border-gray-600 px-4 py-2 rounded text-sm hover:bg-gray-800">
+            <button onclick="declineCookies()" class="border border-gray-600 px-3 py-1 md:px-4 md:py-2 rounded text-xs md:text-sm">
               Refuser
             </button>
           </div>
@@ -1192,94 +1236,7 @@
     } else if (localStorage.getItem('cookies-accepted') === 'true') {
       initAnalytics();
     }
-
-    // Gestion du mode sombre (optionnel)
-    function toggleDarkMode() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('dark-mode', document.documentElement.classList.contains('dark'));
-    }
-
-    // Charger le mode sombre sauvegardé
-    if (localStorage.getItem('dark-mode') === 'true') {
-      document.documentElement.classList.add('dark');
-    }
-
-    // Performance: Précharger les pages importantes
-    function preloadPage(url) {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = url;
-      document.head.appendChild(link);
-    }
-
-    // Précharger les pages importantes après le chargement
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        preloadPage('/blog');
-        preloadPage('/mentions-legales');
-      }, 3000);
-    });
-
-    // Gestion des erreurs JavaScript
-    window.addEventListener('error', function(e) {
-      console.error('Erreur JavaScript:', e.error);
-      // Optionnel: envoyer l'erreur à un service de monitoring
-    });
-
-    // Service Worker pour le cache (PWA)
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('SW registered: ', registration);
-          })
-          .catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
-  </script>
-
-  <!-- Schema.org structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NGO",
-    "name": "YNESIDD",
-    "description": "Association dédiée à l'accompagnement et l'insertion des personnes en situation de handicap en France et en Guinée",
-    "url": "https://www.ynesidd.org",
-    "logo": "https://www.ynesidd.org/images/ynesidd-logo.png",
-    "founder": {
-      "@type": "Person",
-      "name": "Maria Ramatoulaye Comnos"
-    },
-    "address": [
-      {
-        "@type": "PostalAddress",
-        "addressCountry": "FR",
-        "addressLocality": "Paris"
-      },
-      {
-        "@type": "PostalAddress",
-        "addressCountry": "GN",
-        "addressLocality": "Conakry"
-      }
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "mariacomnos2002@yahoo.fr",
-      "contactType": "customer service"
-    },
-    "sameAs": [
-      "https://facebook.com/ynesidd",
-      "https://youtube.com/@ynesidd",
-      "https://tiktok.com/@ynesidd"
-    ]
-  }
-  </script>
+</script>
 
 </body>
 </html>
-
-
-
